@@ -3,6 +3,7 @@
 # Tindify: Tinder 🤝 Spotify
 
 A Spotify-based music-recommending web app inspired by Tinder!
+(SEE OLD REPO: https://github.com/ewei2406/Tindify-OLD)
 
 Try it here: __LINK__!
 
