@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/ewei2406/Herokutest#readme",
   "dependencies": {
+    "axios": "^0.26.0",
     "express": "^4.17.3"
   },
   "devDependencies": {
