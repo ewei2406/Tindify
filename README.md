@@ -1,11 +1,11 @@
-![Tindify Logo](./assets/FullLogo.png)
+[![Tindify Logo](./assets/FullLogo.png)](https://tindify-app.herokuapp.com/)
 
 # Tindify: Tinder 🤝 Spotify
 
 A Spotify-based music-recommending web app inspired by Tinder!
 (SEE OLD REPO: https://github.com/ewei2406/Tindify-OLD)
 
-Try it here: __LINK__!
+Try it here: https://tindify-app.herokuapp.com/
 
 # Previews
 Put some image/gif here...
