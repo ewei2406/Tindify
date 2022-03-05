@@ -2,19 +2,23 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCoffee } from '@fortawesome/free-solid-svg-icons'
 import React from "react";
 import styled from 'styled-components';
+import { IconWrapper } from './IconWrapper';
 
 const ButtonWrapper = styled.div`
     box-sizing: border-box;
-    height: 2em;
-    padding-left: 2em;
-    padding-right: 0.75em;
-    border: 1px solid ${p => p.theme.lightColor};
+    padding: 0.5em 0.75em;
+    /* border: 1px solid ${p => p.theme.lightColor}; */
+    
+    background-color: ${p => p.theme.buttonColor};
+    filter: drop-shadow(0px 3px 6px ${p => p.theme.shadowColor});
+    
     justify-content: start;
     border-radius: 1em;
     position: relative;
 
     font-family: ${p => p.theme.bodyFont};
     display: flex;
+    gap: 5px;
     align-items: center;
     cursor: pointer;
     
@@ -25,23 +29,14 @@ const ButtonWrapper = styled.div`
         color: ${p => p.theme.invertedColor};
         background-color: ${p => p.theme.accent};
         border-color: ${p => p.theme.accent};
+        /* transform: scale(1.02); */
     }
-`
-
-const IconWrapper = styled.div`
-    position: absolute;
-    left: 0.5em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 1em;
-    height: 1em;
 `
 
 type ButtonProps = {
     text: string;
     icon: typeof faCoffee;
-    onClick: () => void;
+    onClick: () => any;
 }
 
 const Button = ({ icon, text, onClick }: ButtonProps) => <ButtonWrapper onClick={onClick}>

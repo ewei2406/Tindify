@@ -1,8 +1,8 @@
 import React from "react"
-import Pagewrapper from "../Pagewrapper"
-import FullLogo from "../../components/FullLogo"
+import FullLogo from "../../components/image/FullLogo"
 import MenuButtons from "./MenuButtons"
 import styled from "styled-components"
+import { ThemeNames } from "../../themes/ThemeNames"
 
 const HomepageWrapper = styled.div`
     display: flex;
@@ -12,14 +12,14 @@ const HomepageWrapper = styled.div`
     top: 25%;
 `
 
-const Homepage = ({ setCurrentPage }: { setCurrentPage: any }) => {
+const Homepage = ({ setCurrentPage, theme }: { setCurrentPage: React.Dispatch<any>, theme: ThemeNames }) => {
     return (
-        <Pagewrapper>
+        <>
             <HomepageWrapper>
-                <FullLogo/>
+                <FullLogo theme={theme}/>
                 <MenuButtons setCurrentPage={setCurrentPage}/>
             </HomepageWrapper>
-        </Pagewrapper>
+        </>
     )
 }
 

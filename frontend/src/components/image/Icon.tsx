@@ -2,20 +2,20 @@ import React from "react";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-    max-width: 400px;
-    max-height: 150px;
+    max-width: 75px;
+    max-height: 75px;
     display: flex;
     justify-content: center;
     align-self: center;
 `
 
-const Logo = styled.img`
+const IconWrapper = styled.img`
     width: 100%;
     align-self: center;
 `
 
-const FullLogo = () => <Wrapper>
-    <Logo src={require("../assets/FullLogo.png")} alt="" width={1000} />
+const Icon = () => <Wrapper>
+    <IconWrapper src={require("../../assets/Icon.png")} alt=""/>
 </Wrapper>
 
-export default FullLogo
+export default Icon
