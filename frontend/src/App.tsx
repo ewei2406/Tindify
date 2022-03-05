@@ -1,13 +1,16 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import './App.css';
-import Homepage from './components/pages/Homepage';
+import Homepage from './pages/homepage/Homepage';
 import styled from 'styled-components';
 
 const theme = {
     // main: "red"
     borderWidth: 2,
     textColor: "#646464",
+    lightColor: "#999",
+    invertedColor: "#fff",
+
     buttonColor: "#fff",
     backgroundColor: "#fff",
     bodyFont: "'Nunito', sans-serif",
