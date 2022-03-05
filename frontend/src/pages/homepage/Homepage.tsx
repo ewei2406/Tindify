@@ -8,15 +8,16 @@ const HomepageWrapper = styled.div`
     display: flex;
     flex-direction: column;
     position: absolute;
+    gap: 25px;
     top: 25%;
 `
 
-const Homepage = () => {
+const Homepage = ({ setCurrentPage }: { setCurrentPage: any }) => {
     return (
         <Pagewrapper>
             <HomepageWrapper>
                 <FullLogo/>
-                <MenuButtons/>
+                <MenuButtons setCurrentPage={setCurrentPage}/>
             </HomepageWrapper>
         </Pagewrapper>
     )

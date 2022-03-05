@@ -11,11 +11,11 @@ const MenuButtonWrapper = styled.div`
 
 `
 
-const MenuButtons = () => {
+const MenuButtons = ({ setCurrentPage }: { setCurrentPage: any }) => {
     return (
         <MenuButtonWrapper>
-            <Button icon={faArrowCircleRight} text="Login through Spotify" onClick={() => null} />
-            <Button icon={faUser} text="Continue as a guest" onClick={() => null} />
+            <Button icon={faArrowCircleRight} text="Login through Spotify" onClick={() => setCurrentPage()} />
+            <Button icon={faUser} text="Continue as a guest" onClick={() => setCurrentPage()} />
         </MenuButtonWrapper>
     )
 }

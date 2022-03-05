@@ -44,7 +44,7 @@ type ButtonProps = {
     onClick: () => void;
 }
 
-const Button = ({ icon, text }: ButtonProps) => <ButtonWrapper>
+const Button = ({ icon, text, onClick }: ButtonProps) => <ButtonWrapper onClick={onClick}>
     <IconWrapper>
         <FontAwesomeIcon icon={icon} />
     </IconWrapper> 
