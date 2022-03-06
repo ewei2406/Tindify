@@ -8,7 +8,7 @@ import Subtext from "../../../components/Subtext";
 import { Bubble } from "../../../components/Bubble";
 import { HeadingWrapper, AddWrapper, BubbleWrapper, BubbleInsideWrapper } from "../SeedWrappers";
 import TrackSearch from "./TrackSearch";
-import ArtistImg from "../../../components/Artistimg";
+import Image from "../../../components/Image";
 
 const TextWrapper = styled.div`
     max-width: 100%;
@@ -65,7 +65,7 @@ const TrackBubbles = ({ currentTracks, setTracks }: Props) => {
                 <BubbleInsideWrapper>
                     {currentTracks.map(track =>
                         <TrackBubble key={track.id} onClick={() => setTracks(currentTracks.filter(g => g !== track))}>
-                            <ArtistImg artist={track.album} size="2em" />
+                            <Image artist={track.album} size="2em" onLoad={() => null}/>
                             <TextWrapper>
                                 <Text>{truncate(track.name)}</Text>
                                 <Small>{track.artists.map((a: { name: string }) => a.name).join(", ")}</Small>

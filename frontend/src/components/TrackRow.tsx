@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMusic, faXmark } from "@fortawesome/free-solid-svg-icons";
-
+import Image from "./Image";
 
 const DeleteButton = styled.div`
     border-radius: 10px;
@@ -30,7 +30,8 @@ const DeleteButton = styled.div`
 const TrackWrapper = styled.div`
     width: 100%;
     background-color: ${p => p.theme.buttonColor};
-    filter: drop-shadow(0px 3px 6px ${p => p.theme.shadowColor});
+    border: 1px solid ${p => p.theme.lightColor};
+    /* filter: drop-shadow(0px 3px 6px ${p => p.theme.shadowColor}); */
     box-sizing: border-box;
     padding: 0.75em;
     border-radius: 1em;
@@ -55,24 +56,6 @@ const TrackWrapper = styled.div`
      &:hover ${DeleteButton} {
         filter: opacity(1);
     }
-`
-
-const ImgWrapper = styled.div`
-    width: 3.5rem;
-    height: 3.5rem;
-    font-size: 1.5em;
-    position: relative;
-    border-radius: 0.25em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    background-color: ${p => p.theme.lightColor};
-`
-
-const Img = styled.img`
-    width: 100%;
-    position: absolute;
 `
 
 const Text = styled.div`
@@ -100,14 +83,13 @@ const Artists = styled.div`
 const TrackRow = ({ track, removeTrack }: { track: any, removeTrack: (id: string) => void }) => {
     return(
         <TrackWrapper>
-            <ImgWrapper>
-                <Img src={""} alt="" />
-                <FontAwesomeIcon icon={faMusic}/>
-            </ImgWrapper>
+
+            <Image artist={track.album} size="3.5em" onLoad={() => null}/>
+            
             <Text>
                 <TrackName>{track.name}</TrackName>
                 <TrackAlbum>{track.album.name}</TrackAlbum>
-                <Artists>{track.artists.join(", ")}</Artists>
+                <Artists>{track.artists.map((a: { name: string }) => a.name).join(", ")}</Artists>
             </Text>
             <DeleteButton onClick={() => removeTrack(track.id)}>
                 <FontAwesomeIcon icon={faXmark} />

@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 export const Content = styled.div`
     transition: ${p => p.theme.transition};
-    background-color: ${p => p.theme.backgroundColor};
+    /* background-color: ${p => p.theme.backgroundColor}; */
 
     color: ${p => p.theme.textColor};
     

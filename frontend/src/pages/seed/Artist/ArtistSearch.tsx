@@ -5,7 +5,7 @@ import IconButton from "../../../components/button/IconButton";
 import Subtext from "../../../components/Subtext";
 import Service from "../../../services/Service";
 import { ShowAddWrapper } from "../ShowAddWrapper";
-import ArtistImg from "../../../components/Artistimg";
+import Image from "../../../components/Image";
 
 const Input = styled.input`
     border: none;
@@ -85,7 +85,7 @@ const ArtistSearch = ({ setShowAdd, addArtist }: { setShowAdd: React.Dispatch<an
                         ? results.map(artist => {
                             console.log(artist)
                             return (<ArtistBubble key={artist.id} onClick={e => {setShowAdd(false); addArtist(artist)}}>
-                                <ArtistImg artist={artist} size="2em" />
+                                <Image artist={artist} size="2em" onLoad={() => null}/>
                                 {artist.name}
                             </ArtistBubble>)
                         })

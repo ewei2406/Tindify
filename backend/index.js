@@ -48,9 +48,9 @@ app.get('/token/search', (req, res) => {
         headers: { 'Authorization': `Bearer ${req.headers.authorization}` },
         params: {
             'q': req.query.query,
-            'offset': req.body.offset || 0,
+            'offset': 0,
             'type': req.query.type,
-            'limit': req.body.limit || 10,
+            'limit': 10,
             'market': 'US'
         }
     }
@@ -65,10 +65,10 @@ app.get('/token/recs', (req, res) => {
     const config = {
         headers: { 'Authorization': `Bearer ${req.headers.authorization}` },
         params: {
-            'seed_artists': req.body.seed_artists || "",
-            'seed_genres': req.body.seed_genres || "",
-            'seed_tracks': req.body.seed_tracks || "",
-            'limit': req.body.limit || 10,
+            'seed_artists': req.query.artists || "",
+            'seed_genres': req.query.genres || "",
+            'seed_tracks': req.query.tracks || "",
+            'limit': 15,
             'market': 'US'
         }
     }

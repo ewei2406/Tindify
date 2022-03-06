@@ -1,8 +1,8 @@
 export enum PageNames {
-    HOME, 
+    HOME, // Done
     AUTH, 
-    SWIPE, 
-    PLAYLIST, 
-    SEED, 
+    MATCH, 
+    PLAYLIST, // Done
+    SEED, // Done
     ABOUT
 }

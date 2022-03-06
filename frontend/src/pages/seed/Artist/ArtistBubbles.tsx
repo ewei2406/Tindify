@@ -8,7 +8,7 @@ import Subtext from "../../../components/Subtext";
 import ArtistSearch from "./ArtistSearch";
 import { Bubble } from "../../../components/Bubble";
 import { HeadingWrapper, AddWrapper, BubbleWrapper, BubbleInsideWrapper } from "../SeedWrappers";
-
+import Image from "../../../components/Image"
 
 type Props = {
     setArtists: React.Dispatch<any>,
@@ -40,6 +40,7 @@ const ArtistBubbles = ({ currentArtists, setArtists }: Props) => {
                 <BubbleInsideWrapper>
                     {currentArtists.map(artist =>
                         <Bubble key={artist.id} onClick={() => setArtists(currentArtists.filter(g => g !== artist))}>
+                            <Image artist={artist} size="2em" onLoad={() => null}/>
                             {artist.name}
                             <FontAwesomeIcon icon={faXmarkCircle} />
                         </Bubble>

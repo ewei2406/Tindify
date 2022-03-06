@@ -44,6 +44,22 @@ const getTrackSearch = async (auth_token: string, query: string): Promise<Array<
         .then((data: any) => data.data.tracks.items)
 }
 
-const Service = { getToken, getGenres, getArtistSearch, getTrackSearch }
+const getMatches = async (auth_token: string, artists: string, tracks: string, genres: string): Promise<Array<any>> => {
+    const config = {
+        headers: { 'Authorization': `${auth_token}` },
+        params: {
+            type: "track",
+            artists: artists,
+            tracks: tracks,
+            genres: genres,
+        }
+    }
+
+    return axios
+        .get("/token/recs", config)
+        .then((data: any) => data.data.tracks.filter((t: { preview_url: string}) => t.preview_url !== null))
+}
+
+const Service = { getToken, getGenres, getArtistSearch, getTrackSearch, getMatches }
 
 export default Service

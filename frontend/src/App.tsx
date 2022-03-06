@@ -14,11 +14,13 @@ import { ThemeNames } from './themes/ThemeNames';
 import SeedPage from './pages/seed/SeedPage';
 
 import Service from './services/Service';
+import MatchPage from './pages/match/MatchPage';
 
 const App = () => {
 
-    const [currentPage, setCurrentPage] = useState(PageNames.SEED)
+    const [currentPage, setCurrentPage] = useState(PageNames.MATCH)
     const [currentTheme, setCurrentTheme] = useState(ThemeNames.LIGHT)
+
     const [seedAttr, setSeedAttr] = useState({
         attr: {
             popularity: 0.75,
@@ -31,6 +33,14 @@ const App = () => {
             artists: [],
             tracks: []
         }
+    })
+
+    let t: Array<any>
+    t = []
+    const [currentData, setCurrentData] = useState({
+        title: "Playlist",
+        tracks: t,
+        seen: []
     })
 
     let initialGenres: string[];
@@ -46,9 +56,9 @@ const App = () => {
                 .getGenres(auth_token)
                 .then(data => setAvailableGenres(data))
 
-            Service
-                .getArtistSearch(auth_token, "kanye")
-                .then(data => console.log(data))
+            // Service
+            //     .getTrackSearch(auth_token, "Juice wrld")
+            //     .then(data => setCurrentData({...currentData, tracks: data}))
         })
     
       return () => {
@@ -67,6 +77,8 @@ const App = () => {
     switch(currentPage) {
         case PageNames.PLAYLIST:
             CurrentPage = <PlaylistPage
+                currentData={currentData}
+                setCurrentData={setCurrentData}
                 setCurrentPage={setCurrentPagePass}
                 theme={currentTheme}/>
             break
@@ -76,6 +88,14 @@ const App = () => {
                 setCurrentPage={setCurrentPagePass}
                 seedAttr={seedAttr}
                 setSeedAttr={setSeedAttr}
+                theme={currentTheme} />
+            break
+        case PageNames.MATCH:
+            CurrentPage = <MatchPage
+                setCurrentPage={setCurrentPagePass}
+                seedAttr={seedAttr}
+                setCurrentData={setCurrentData}
+                currentData={currentData}
                 theme={currentTheme} />
             break
     }

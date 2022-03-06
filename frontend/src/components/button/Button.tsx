@@ -4,13 +4,14 @@ import React from "react";
 import styled from 'styled-components';
 import { IconWrapper } from './IconWrapper';
 
-const ButtonWrapper = styled.div`
+export const ButtonWrapper = styled.div`
     box-sizing: border-box;
     padding: 0.5em 0.75em;
     /* border: 1px solid ${p => p.theme.lightColor}; */
     
+    border: 1px solid ${p => p.theme.lightColor};
     background-color: ${p => p.theme.buttonColor};
-    filter: drop-shadow(0px 3px 6px ${p => p.theme.shadowColor});
+    /* filter: drop-shadow(0px 3px 6px ${p => p.theme.shadowColor}); */
     
     justify-content: start;
     border-radius: 1em;

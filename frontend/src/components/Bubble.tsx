@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 export const Bubble = styled.div`
     border-radius: 0.5em;
-    padding: 0.2em 0.4em;
+    padding: 0.25em;
     font-family: ${p => p.theme.bodyFont};
 
     color: ${p => p.theme.invertedColor};

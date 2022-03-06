@@ -15,13 +15,13 @@ const Img = styled.img`
     width: 100%;
 `
 
-const ArtistImg = ({ artist, size }: { artist: {images: Array<any>}, size: any}) => {
+const Image = ({ artist, size, onLoad = () => null }: { artist: {images: Array<any>}, size: any, onLoad: () => any }) => {
     const img_src = artist.images.length > 0 ? artist.images[0].url : ""
     return (
         <Imgwrapper size={size}>
-            <Img src={img_src} alt="" />
+            <Img src={img_src} alt="" onLoad={onLoad}/>
         </Imgwrapper>
     )
 }
 
-export default ArtistImg
+export default Image

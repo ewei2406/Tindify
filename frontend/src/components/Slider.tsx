@@ -26,7 +26,8 @@ const SliderBar = styled.input`
         height: 1.5em;
         border-radius: 1.5em;
         background: ${p => p.theme.sliderColor};
-        filter: drop-shadow(0px 3px 6px ${p => p.theme.shadowColor});
+        border: 1px solid ${p => p.theme.lightColor};
+        /* filter: drop-shadow(0px 3px 6px ${p => p.theme.shadowColor}); */
     }
 
     &::-webkit-slider-thumb {
@@ -36,7 +37,8 @@ const SliderBar = styled.input`
         height: 1.5em;
         border-radius: 1.5em;
         background: ${p => p.theme.sliderColor};
-        filter: drop-shadow(0px 3px 6px ${p => p.theme.shadowColor});
+        border: 1px solid ${p => p.theme.lightColor};
+        /* filter: drop-shadow(0px 3px 6px ${p => p.theme.shadowColor}); */
     }
 `
 

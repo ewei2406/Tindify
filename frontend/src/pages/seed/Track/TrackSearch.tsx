@@ -5,7 +5,7 @@ import IconButton from "../../../components/button/IconButton";
 import Subtext from "../../../components/Subtext";
 import Service from "../../../services/Service";
 import { ShowAddWrapper } from "../ShowAddWrapper";
-import ArtistImg from "../../../components/Artistimg";
+import Image from "../../../components/Image";
 
 const Input = styled.input`
     border: none;
@@ -95,7 +95,7 @@ const TrackSearch = ({ setShowAdd, addTrack }: { setShowAdd: React.Dispatch<any>
                         ? results.map(track => {
                             console.log(track)
                             return (<TrackBubble key={track.id} onClick={e => { setShowAdd(false); addTrack(track) }}>
-                                <ArtistImg artist={track.album} size="2em" />
+                                <Image artist={track.album} size="2em" onLoad={() => null}/>
                                 <TextWrapper>
                                     <Text>{track.name}</Text>
                                     <Small>{track.album.name}</Small>

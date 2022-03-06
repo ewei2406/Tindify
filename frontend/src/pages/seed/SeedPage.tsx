@@ -9,9 +9,16 @@ import SeedSliders from "./SeedSliders"
 import GenreBubbles from "./Genre/GenreBubbles"
 import ArtistBubbles from "./Artist/ArtistBubbles"
 
-import { faCircleArrowLeft } from "@fortawesome/free-solid-svg-icons"
+import { faCircleArrowLeft, faExclamationCircle } from "@fortawesome/free-solid-svg-icons"
 import { PageNames } from "../PagesNames"
 import TrackBubbles from "./Track/TrackBubbles"
+
+import styled from "styled-components"
+
+const ButtonWrapper = styled.div`
+    display: flex;
+    gap: 10px;
+`
 
 type Props = {
     setCurrentPage: React.Dispatch<any>,
@@ -62,7 +69,6 @@ const SeedPage = ({
     
     return (
         <>
-            <Button icon={faCircleArrowLeft} text="Back" onClick={() => setCurrentPage(PageNames.PLAYLIST)} />
             <Heading text="Seed settings"/>
 
             <SeedSliders attr={seedAttr.attr} setAttr={setAttr}/>
@@ -81,6 +87,10 @@ const SeedPage = ({
                 currentTracks={seedAttr.seeds.tracks}
                 setTracks={t => setSeeds({...seedAttr.seeds, tracks: t})}
             />
+            <ButtonWrapper>
+                <Button icon={faCircleArrowLeft} text="Back" onClick={() => setCurrentPage(PageNames.PLAYLIST)} />
+                <Button icon={faExclamationCircle} text="Reset" onClick={() => { window.confirm("Reset all?") }} />
+            </ButtonWrapper>
         </>
     )
 }
