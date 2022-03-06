@@ -73,7 +73,7 @@ const MatchPage = ({ setCurrentPage, theme, seedAttr, currentData, setCurrentDat
 
     const totalLength = seedAttr.seeds.artists.length + seedAttr.seeds.genres.length + seedAttr.seeds.tracks.length
 
-    const loadMatches = () => {
+    const loadMatches = (limit=15) => {
         let randArtist = ""
         if (seedAttr.seeds.artists.length > 0) {
             randArtist = seedAttr.seeds.artists[Math.floor((seedAttr.seeds.artists.length - 1) * Math.random())].id
@@ -100,9 +100,16 @@ const MatchPage = ({ setCurrentPage, theme, seedAttr, currentData, setCurrentDat
 
         Service.getToken().then(auth_token => {
             Service
-                .getMatches(auth_token, randArtist, randTrack, randGenre)
+                .getMatches(auth_token, randArtist, randTrack, randGenre, limit,
+                    seedAttr.attr.popularity,
+                    seedAttr.attr.danceability,
+                    seedAttr.attr.energy,
+                    seedAttr.attr.instrumentalness,
+                    )
                 .then(data => {
-                    setMatches(data)
+                    const results = data.filter(track => !currentData.seen.some(id => id === track.id))
+                    if (results.length !== 0) setMatches(results)
+                    else loadMatches(limit + 10)
                 })
         })
     }
@@ -116,7 +123,7 @@ const MatchPage = ({ setCurrentPage, theme, seedAttr, currentData, setCurrentDat
         if (!currentData.tracks.some(t => t.id === track.id)) setCurrentData({ ...currentData, tracks: [...currentData.tracks, track] })
     }
 
-    if (matches.length === 0 && !queried) {
+    if (matches.length === 0 && !queried && totalLength !== 0) {
         loadMatches()
         setQueried(true)
     }

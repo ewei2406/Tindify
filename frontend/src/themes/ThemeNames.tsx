@@ -1,3 +1,3 @@
 export enum ThemeNames {
-    LIGHT, DARK
+    LIGHT="LIGHT", DARK="DARK"
 }

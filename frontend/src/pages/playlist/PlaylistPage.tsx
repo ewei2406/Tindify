@@ -16,24 +16,27 @@ type Props = {
     setCurrentPage: React.Dispatch<any>,
     currentData: { title: string, tracks: Array<any> },
     setCurrentData: React.Dispatch<any>,
-    theme: ThemeNames
+    theme: ThemeNames,
+    reset: () => void
 }
+
 
 const PlaylistPage = ({ 
         setCurrentPage, 
         currentData,
         setCurrentData,
-        theme }: Props) => {
+        theme,
+        reset }: Props) => {
 
     const setPlaylistTitle = (n: string) => setCurrentData({ ...currentData, title: n })
     const setCurrentTracks = (t: Array<any>) => setCurrentData({...currentData, tracks: t})
-    
+
     return (
         <>
             
             <SmallLogo theme={theme}/>
             <PlaylistTitle title={currentData.title} setTitle={setPlaylistTitle}/>
-            <PlaylistButtons setCurrentPage={setCurrentPage}/>
+            <PlaylistButtons setCurrentPage={setCurrentPage} currentData={currentData} reset={reset}/>
             <Heading text="Tracks:"/>
             <CurrentTracks currentTracks={currentData.tracks} setCurrentTracks={setCurrentTracks}/>
             <Button icon={faFire} text="Get matches" onClick={() => setCurrentPage(PageNames.MATCH)}/>

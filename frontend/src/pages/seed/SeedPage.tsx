@@ -66,6 +66,10 @@ const SeedPage = ({
     }) => {
         setSeedAttr({ ...seedAttr, seeds: seeds })
     }
+
+    const reset = () => {
+        console.log("reset!");
+    }
     
     return (
         <>
@@ -88,8 +92,7 @@ const SeedPage = ({
                 setTracks={t => setSeeds({...seedAttr.seeds, tracks: t})}
             />
             <ButtonWrapper>
-                <Button icon={faCircleArrowLeft} text="Back" onClick={() => setCurrentPage(PageNames.PLAYLIST)} />
-                <Button icon={faExclamationCircle} text="Reset" onClick={() => { window.confirm("Reset all?") }} />
+                <Button icon={faCircleArrowLeft} text="Home" onClick={() => setCurrentPage(PageNames.PLAYLIST)} />
             </ButtonWrapper>
         </>
     )

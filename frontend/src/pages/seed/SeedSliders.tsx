@@ -14,10 +14,10 @@ type Props = {
 const SeedSliders = ({ attr, setAttr }: Props) => {
     return (
         <>
-            <Slider text="Popularity" value={attr.popularity} setValue={value => setAttr({...attr, popularity: value})}/>
-            <Slider text="Danceability" value={attr.danceability} setValue={value => setAttr({ ...attr, danceability: value })}/>
-            <Slider text="Energy" value={attr.energy} setValue={value => setAttr({ ...attr, energy: value })}/>
-            <Slider text="Instrumentalness" value={attr.instrumentalness} setValue={value => setAttr({ ...attr, instrumentalness: value })} />
+            <Slider text="Popularity" value={attr.popularity} setValue={value => setAttr({...attr, popularity: Number(value)})}/>
+            <Slider text="Danceability" value={attr.danceability} setValue={value => setAttr({ ...attr, danceability: Number(value) })}/>
+            <Slider text="Energy" value={attr.energy} setValue={value => setAttr({ ...attr, energy: Number(value) })}/>
+            <Slider text="Instrumentalness" value={attr.instrumentalness} setValue={value => setAttr({ ...attr, instrumentalness: Number(value) })} />
         </>
     )
 }
