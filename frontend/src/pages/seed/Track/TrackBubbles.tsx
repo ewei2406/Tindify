@@ -5,57 +5,79 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmarkCircle, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import IconButton from "../../../components/button/IconButton";
 import Subtext from "../../../components/Subtext";
-import ArtistSearch from "../Artist/ArtistSearch";
 import { Bubble } from "../../../components/Bubble";
-import { HeadingWrapper, AddWrapper } from "../HeadingWrapper";
+import { HeadingWrapper, AddWrapper, BubbleWrapper, BubbleInsideWrapper } from "../SeedWrappers";
+import TrackSearch from "./TrackSearch";
+import ArtistImg from "../../../components/Artistimg";
 
-const BubbleWrapper = styled.div`
-    display: flex;
+const TextWrapper = styled.div`
+    max-width: 100%;
     width: 100%;
-    flex-wrap: wrap;
-    /* justify-content: center; */
-    gap: 5px;
 `
 
+const Text = styled.div`
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: clip;
+    white-space: nowrap;
+    font-weight: 800;
+`
+
+const Small = styled.div`
+    font-size: 0.75em;
+`
 
 type Props = {
-    setArtists: React.Dispatch<any>,
-    currentArtists: Array<any>,
+    setTracks: React.Dispatch<any>,
+    currentTracks: Array<any>,
 }
 
-const ArtistBubbles = ({ currentArtists, setArtists }: Props) => {
+const TrackBubble = styled(Bubble)`
+    height: 2.5em;
+`
+
+const TrackBubbles = ({ currentTracks, setTracks }: Props) => {
 
     const [showAdd, setShowAdd] = useState(false)
 
-    const addArtist = (a: any) => {
-        setArtists([...currentArtists, a])
+    const addTrack = (t: any) => {
+        if (!currentTracks.some(track => track.id === t.id)) setTracks([...currentTracks, t])
     }
+
+    const truncate = (str: string) => {
+        return (str.length > 30) ? str.substr(0, 30 - 1) + '...' : str;
+    };
 
 
     return (
         <>
             <HeadingWrapper>
-                <Heading text={"Artists"} />
+                <Heading text={"Tracks"} />
                 <AddWrapper>
                     {showAdd
-                        ? <ArtistSearch setShowAdd={setShowAdd} addArtist={addArtist} />
+                        ? <TrackSearch setShowAdd={setShowAdd} addTrack={addTrack} />
                         : <IconButton icon={faPlusCircle} onClick={() => setShowAdd(true)} />
                     }
                 </AddWrapper>
             </HeadingWrapper>
 
             <BubbleWrapper>
-                {currentArtists.map(artist =>
-                    <Bubble key={artist.id} onClick={() => setArtists(currentArtists.filter(g => g !== artist))}>
-                        {artist.name}
-                        <FontAwesomeIcon icon={faXmarkCircle} />
-                    </Bubble>
-                )}
-
-                {currentArtists.length === 0 ? <Subtext text="No artists selected" /> : ""}
+                <BubbleInsideWrapper>
+                    {currentTracks.map(track =>
+                        <TrackBubble key={track.id} onClick={() => setTracks(currentTracks.filter(g => g !== track))}>
+                            <ArtistImg artist={track.album} size="2em" />
+                            <TextWrapper>
+                                <Text>{truncate(track.name)}</Text>
+                                <Small>{track.artists.map((a: { name: string }) => a.name).join(", ")}</Small>
+                            </TextWrapper>
+                            <FontAwesomeIcon icon={faXmarkCircle} />
+                        </TrackBubble>
+                    )}
+                    {currentTracks.length === 0 ? <Subtext text="No tracks selected" /> : ""}
+                </BubbleInsideWrapper>
             </BubbleWrapper>
         </>
     )
 }
 
-export default ArtistBubbles
+export default TrackBubbles

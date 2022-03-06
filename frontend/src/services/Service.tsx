@@ -30,6 +30,20 @@ const getArtistSearch = async (auth_token: string, query: string): Promise<Array
         .then((data: any) => data.data.artists.items)
 }
 
-const Service = { getToken, getGenres, getArtistSearch }
+const getTrackSearch = async (auth_token: string, query: string): Promise<Array<any>> => {
+    const config = {
+        headers: {'Authorization': `${auth_token}` },
+        params: {
+            type: "track",
+            query: query
+        }
+    }
+
+    return axios
+        .get("/token/search", config)
+        .then((data: any) => data.data.tracks.items)
+}
+
+const Service = { getToken, getGenres, getArtistSearch, getTrackSearch }
 
 export default Service

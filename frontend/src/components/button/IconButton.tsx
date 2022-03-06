@@ -4,8 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCoffee } from "@fortawesome/free-solid-svg-icons";
 
 const IconWrapper = styled.div`
-    width: 1.5em;
-    height: 1.5em;
+    width: 1em;
+    height: 1em;
     cursor: pointer;
     display: flex;
     justify-content: center;

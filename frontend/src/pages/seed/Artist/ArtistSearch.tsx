@@ -33,6 +33,7 @@ const ResultsWrapper = styled.div`
     gap: 5px;
     padding: 5px;
     box-sizing: border-box;
+    z-index: 9999;
 `
 
 const ArtistBubble = styled.div`
@@ -78,28 +79,30 @@ const ArtistSearch = ({ setShowAdd, addArtist }: { setShowAdd: React.Dispatch<an
 
     return (
         <ShowAddWrapper>
-            <Input value={query} onChange={e => {setQuery(e.target.value); setQueried(false)}} onKeyDown={e => e.key === "Enter" ? search() : null} autoFocus />
-            <IconButton icon={faArrowCircleRight}
-                onClick={() => {
-                    search()
-                }} />
-
-            <IconButton icon={faXmarkCircle}
-                onClick={() => { setShowAdd(false); setQuery("acoustic") }} />
-            <ResultsWrapper>
-                {queried 
+            <ResultsWrapper >
+                {queried
                     ? results.length !== 0
                         ? results.map(artist => {
                             console.log(artist)
-                            return(<ArtistBubble key={artist.id} onClick={() => addArtist(artist)}>
-                                <ArtistImg artist={artist} size="2em"/>
+                            return (<ArtistBubble key={artist.id} onClick={e => {setShowAdd(false); addArtist(artist)}}>
+                                <ArtistImg artist={artist} size="2em" />
                                 {artist.name}
                             </ArtistBubble>)
-                            })
+                        })
                         : <Subtext text="No results found." />
-                    : <Subtext text="Press Enter to search."/>
+                    : <Subtext text="Press Enter to search." />
                 }
             </ResultsWrapper>
+
+            <Input value={query} 
+                onChange={e => {setQuery(e.target.value); setQueried(false)}} 
+                onKeyDown={e => e.key === "Enter" ? search() : null} 
+
+                autoFocus />
+
+            <IconButton icon={faXmarkCircle}
+                onClick={() => { setShowAdd(false); setQuery("") }} />
+            
         </ShowAddWrapper>
     )
 }

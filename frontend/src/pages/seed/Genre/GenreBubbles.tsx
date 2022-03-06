@@ -7,15 +7,7 @@ import { ShowAddWrapper } from "../ShowAddWrapper";
 import IconButton from "../../../components/button/IconButton";
 import Subtext from "../../../components/Subtext";
 import { Bubble } from "../../../components/Bubble";
-import { HeadingWrapper, AddWrapper } from "../HeadingWrapper";
-
-const GenreWrapper = styled.div`
-    display: flex;
-    width: 100%;
-    flex-wrap: wrap;
-    /* justify-content: center; */
-    gap: 5px;
-`
+import { HeadingWrapper, AddWrapper, BubbleWrapper, BubbleInsideWrapper } from "../SeedWrappers";
 
 const Select = styled.select`
     border: none;
@@ -67,16 +59,17 @@ const GenreBubbles = ({ availableGenres, selectedGenres, setSelectedGenres }: Pr
                 </AddWrapper>
             </HeadingWrapper>
 
-            <GenreWrapper>
-                {selectedGenres.map(genre => 
-                    <Bubble key={genre} onClick={() => setSelectedGenres(selectedGenres.filter(g => g !== genre))}>
-                        {genre}
-                        <FontAwesomeIcon icon={faXmarkCircle} />
-                    </Bubble>
-                )}
-
-                {selectedGenres.length === 0 ? <Subtext text="No genres selected"/> : ""}
-            </GenreWrapper>
+            <BubbleWrapper>
+                <BubbleInsideWrapper>
+                    {selectedGenres.map(genre =>
+                        <Bubble key={genre} onClick={() => setSelectedGenres(selectedGenres.filter(g => g !== genre))}>
+                            {genre}
+                            <FontAwesomeIcon icon={faXmarkCircle} />
+                        </Bubble>
+                    )}
+                    {selectedGenres.length === 0 ? <Subtext text="No genres selected"/> : ""}
+                </BubbleInsideWrapper>
+            </BubbleWrapper>
         </>
     )
 }

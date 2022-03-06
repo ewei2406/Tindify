@@ -11,6 +11,7 @@ import ArtistBubbles from "./Artist/ArtistBubbles"
 
 import { faCircleArrowLeft } from "@fortawesome/free-solid-svg-icons"
 import { PageNames } from "../PagesNames"
+import TrackBubbles from "./Track/TrackBubbles"
 
 type Props = {
     setCurrentPage: React.Dispatch<any>,
@@ -74,6 +75,11 @@ const SeedPage = ({
             <ArtistBubbles
                 currentArtists={seedAttr.seeds.artists}
                 setArtists={a => setSeeds({...seedAttr.seeds, artists: a})}
+            />
+
+            <TrackBubbles
+                currentTracks={seedAttr.seeds.tracks}
+                setTracks={t => setSeeds({...seedAttr.seeds, tracks: t})}
             />
         </>
     )
