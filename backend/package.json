@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon -r dotenv/config index.js"
+    "build:ui": "rm -r ./build && cd ../frontend && npm run build && mv build ../backend",
+    "deploy": "git add . && git commit -m 'deploy' && git push heroku master",
+    "deploy:full": "npm run build:ui && npm run deploy"
   },
   "repository": {
     "type": "git",
