@@ -73,7 +73,10 @@ const MatchPage = ({ setCurrentPage, theme, seedAttr, currentData, setCurrentDat
 
     const totalLength = seedAttr.seeds.artists.length + seedAttr.seeds.genres.length + seedAttr.seeds.tracks.length
 
-    const loadMatches = (limit=15) => {
+    const loadMatches = (limit=15, overrideTracks: null | string = null) => {
+
+        console.log("QUERYING")
+
         let randArtist = ""
         if (seedAttr.seeds.artists.length > 0) {
             randArtist = seedAttr.seeds.artists[Math.floor((seedAttr.seeds.artists.length - 1) * Math.random())].id
@@ -100,16 +103,18 @@ const MatchPage = ({ setCurrentPage, theme, seedAttr, currentData, setCurrentDat
 
         Service.getToken().then(auth_token => {
             Service
-                .getMatches(auth_token, randArtist, randTrack, randGenre, limit,
+                .getMatches(auth_token, randArtist, overrideTracks || randTrack, randGenre, limit,
                     seedAttr.attr.popularity,
                     seedAttr.attr.danceability,
                     seedAttr.attr.energy,
                     seedAttr.attr.instrumentalness,
                     )
                 .then(data => {
-                    const results = data.filter(track => !currentData.seen.some(id => id === track.id))
-                    if (results.length !== 0) setMatches(results)
-                    else loadMatches(limit + 10)
+                    console.log(data)
+                    console.log(currentData.seen)
+                    const results = data.filter(track => !currentData.seen.includes(track.id))
+                    if (results.length !== 0) { setMatches(results); setQueried(false) }
+                    else { loadMatches(limit + 10, data.slice(0, Math.min(3, data.length)).map(t => t.id).join(",")) }
                 })
         })
     }
@@ -123,12 +128,13 @@ const MatchPage = ({ setCurrentPage, theme, seedAttr, currentData, setCurrentDat
         if (!currentData.tracks.some(t => t.id === track.id)) setCurrentData({ ...currentData, tracks: [...currentData.tracks, track] })
     }
 
-    if (matches.length === 0 && !queried && totalLength !== 0) {
-        loadMatches()
-        setQueried(true)
-    }
-
-    if (queried && matches.length !== 0) setQueried(false)
+    useEffect(() => {
+        if (matches.length === 0 && !queried && totalLength !== 0) {
+            setQueried(true)
+            loadMatches()
+        }
+    
+    }, [matches.length, queried])
 
     return (
         <>

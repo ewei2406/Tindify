@@ -46,14 +46,20 @@ const TrackWrapper = styled.div`
     transition: ${p => p.theme.transition};
     color: ${p => p.theme.textColor};
 
-    &:hover {
-        color: ${p => p.theme.invertedColor};
-        background-color: ${p => p.theme.accent};
-        border-color: ${p => p.theme.accent};
-        /* transform: scale(1.02); */
+    @media (hover: hover) {
+        &:hover {
+            color: ${p => p.theme.invertedColor};
+            background-color: ${p => p.theme.accent};
+            border-color: ${p => p.theme.accent};
+            /* transform: scale(1.02); */
+        }
+
+        &:hover ${DeleteButton} {
+            filter: opacity(1);
+        }
     }
 
-     &:hover ${DeleteButton} {
+    @media not (hover: hover) {
         filter: opacity(1);
     }
 `

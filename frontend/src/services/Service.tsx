@@ -28,7 +28,7 @@ const getArtistSearch = async (auth_token: string, query: string): Promise<Array
 
     return axios
         .get("/token/search", config)
-        .then((data: any) => data.data.artists.items)
+        .then((data: any) => { console.log(data); return data.data.artists.items})
 }
 
 const getTrackSearch = async (auth_token: string, query: string): Promise<Array<any>> => {

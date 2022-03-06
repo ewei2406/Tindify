@@ -46,11 +46,12 @@ const GenreBubbles = ({ availableGenres, selectedGenres, setSelectedGenres }: Pr
                 <AddWrapper>
                     {showAdd
                         ? <ShowAddWrapper>
-                            <Select name="text" value={newGenre} onChange={e => setNewGenre(e.target.value)}>
+                            <Select defaultValue={"E"} name="text" onChange={e => { if (e.target.value !== "") addGenre(e.target.value); setShowAdd(false); }}>
+                                <option value="">Select a genre...</option>
                                 {availableGenres.map(g => <option value={g} key={g}>{g.replace("-", " ")}</option>)}
                             </Select>
-                            <IconButton icon={faCheckCircle}
-                                onClick={() => { setShowAdd(false); addGenre(newGenre)} } />
+                            {/* <IconButton icon={faCheckCircle}
+                                onClick={() => { setShowAdd(false); addGenre(newGenre)} } /> */}
                             <IconButton icon={faXmarkCircle}
                                 onClick={() => { setShowAdd(false); setNewGenre("") } } />
                         </ShowAddWrapper>

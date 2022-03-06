@@ -14,8 +14,10 @@ const IconWrapper = styled.div`
     transition: ${p => p.theme.transition};
     color: inherit;
 
-    &:hover {
-        color: ${p => p.theme.accent};
+    @media (hover: hover) {
+        &:hover {
+            color: ${p => p.theme.accent};
+        }
     }
 `
 

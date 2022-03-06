@@ -26,10 +26,12 @@ export const ButtonWrapper = styled.div`
     transition: ${p => p.theme.transition};
     color: ${p => p.theme.textColor};
 
-    &:hover {
-        color: ${p => p.theme.invertedColor};
-        background-color: ${p => p.theme.accent};
-        border-color: ${p => p.theme.accent};
+    @media (hover: hover) {
+        &:hover {
+            color: ${p => p.theme.invertedColor};
+            background-color: ${p => p.theme.accent};
+            border-color: ${p => p.theme.accent};
+        }
         /* transform: scale(1.02); */
     }
 `

@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 
 import { ThemeNames } from "../../themes/ThemeNames"
 
@@ -70,7 +70,17 @@ const SeedPage = ({
     const reset = () => {
         console.log("reset!");
     }
+
+
+    useEffect(() => {
+
+        const totalLength = seedAttr.seeds.artists.length + seedAttr.seeds.genres.length + seedAttr.seeds.tracks.length
+
+        if (totalLength === 0) window.alert("Add at least one genre, artist, or track!")
     
+    }, [])
+    
+
     return (
         <>
             <Heading text="Seed settings"/>

@@ -13,8 +13,10 @@ export const Bubble = styled.div`
     align-items: center;
     gap: 10px;
 
-    &:hover {
-        background-color: ${p => p.theme.accent};
-        color: ${p => p.theme.invertedColor};
+    @media (hover: hover) {
+        &:hover {
+            background-color: ${p => p.theme.accent};
+            color: ${p => p.theme.invertedColor};
+        }
     }
 `

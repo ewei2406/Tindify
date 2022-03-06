@@ -60,7 +60,7 @@ const App = () => {
             // console.log(auth_token)
             Service
                 .getGenres(auth_token)
-                .then(data => setAvailableGenres(data))
+                .then(data => setAvailableGenres(data || ["pop"]))
 
         })
 

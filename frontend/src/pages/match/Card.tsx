@@ -21,9 +21,11 @@ const MatchButton = styled.div`
     cursor: pointer;
     transition: ${p => p.theme.transition};
 
-    &:hover {
-        background-color: ${p => p.theme.accent};
-        color: ${p => p.theme.invertedColor};
+    @media (hover: hover) {
+        &:hover {
+            background-color: ${p => p.theme.accent};
+            color: ${p => p.theme.invertedColor};
+        }
     }
 `
 
