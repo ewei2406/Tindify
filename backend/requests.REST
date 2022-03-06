@@ -6,13 +6,9 @@ Content-Type: application/json
 Authorization: BQCVsAvW4cO0iY5GG1N1I3-CbCCNoCnJlJ4mWNAnnzULbo4yOr-hGLx6kQQ1jhuWcuQQwzI8DgUQgL_aLgk
 
 ###
-GET http://localhost:3001/token/search
+GET http://localhost:3001/token/search?type=artist&query=drake
 Content-Type: application/json
-Authorization: BQCVjcoD32OYhmhzc6InjZYWqbTvol3qbr0zAr63njrSNBNi0IxV8wTO7R01u3qI4_nz1-zGA2-G2y4D75E
-
-{
-    "q": "123"
-}
+Authorization: BQD04qGrY9XmNeYWCfemVDSKv3-3KMoMOEKdS3cvqYf3EZTtaDug7pgPrQ21_dRGAILLJE-OoilhdwoKPbg
 
 ###
 GET http://localhost:3001/token/recs
@@ -26,12 +22,12 @@ Authorization: BQCVjcoD32OYhmhzc6InjZYWqbTvol3qbr0zAr63njrSNBNi0IxV8wTO7R01u3qI4
 ###
 GET http://localhost:3001/userToken/getUser
 Content-Type: application/json
-Authorization: BQBexLWaTr-ImALXs8RO_L71gGK2bqQFB92mbyqGNKshf8Fb54lABp3PZ3ZFAxn-umfqh7SePtEoBd9vwGr9GiFCjgAwEZOqc5YihgXxe7UYxZ1C-hUdBqd-SRrIp1_lu-qnzj39vMIn45hgX0LTeQpG4xqJg-TYFFDEzvD9BZkpuLG1-3n6wzbos9E6_CjTKqDvwfFLnZ8i7OweI1TP77Srdw32DsbMxlaIfKss3Ez1tM6tYzPQ7CGxnrZk
+Authorization: BQDr0RAmkUFKdqUXluWx1bDH3eaA9RxYhwCu90QelAamnIrybWe0HaVZpEyUEBfPy6tbTjG0le0SwIFRG50
 
 ###
 POST http://localhost:3001/userToken/makeplaylist
 Content-Type: application/json
-Authorization: BQBexLWaTr-ImALXs8RO_L71gGK2bqQFB92mbyqGNKshf8Fb54lABp3PZ3ZFAxn-umfqh7SePtEoBd9vwGr9GiFCjgAwEZOqc5YihgXxe7UYxZ1C-hUdBqd-SRrIp1_lu-qnzj39vMIn45hgX0LTeQpG4xqJg-TYFFDEzvD9BZkpuLG1-3n6wzbos9E6_CjTKqDvwfFLnZ8i7OweI1TP77Srdw32DsbMxlaIfKss3Ez1tM6tYzPQ7CGxnrZk
+Authorization: BQDklXarIj4m-D-DLmoS6BLy5IhrX8u7Uy0xFI59LrPtPZjmmgUqOe3lgZS6KXPkmbG-HpjpA3Zvln8sKxejcrP_LOTLfLr_Z7XK4ewMJeek-FVmDdZbK6VXZwKqk9qQIsDtlYCNlWJ_9_NAwc1zPta5L-KrKYYViTteL2rec1tp3qOo8RxRpaofuelXAdFR9Lwo7PxUeVy69cGVDxoaNeW7Dvd8ecHOEJcM0-PfT7R8JcDcEqTqefx8Iciq
 
 {
     "userid": "24tflyyufr37ylwmavqc28a1m"
