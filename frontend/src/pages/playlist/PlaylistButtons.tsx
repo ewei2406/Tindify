@@ -17,8 +17,8 @@ const access_token = new URLSearchParams(url).get('#access_token');
 const PlaylistButtons = ({ setCurrentPage, currentData, reset }: { setCurrentPage: React.Dispatch<any>, currentData: any, reset: () => void}) => {
     return (
         <ButtonsWrapper>
-            <Button icon={faSeedling} text={"Configure Seed"} onClick={() => setCurrentPage(PageNames.SEED)} />
-            <Button icon={faShareNodes} text={access_token === null ? "Login to export" : "Export to Spotify"} onClick={() => {
+            <Button icon={faSeedling} text={"Seed"} onClick={() => setCurrentPage(PageNames.SEED)} />
+            <Button icon={faShareNodes} text={access_token === null ? "Login" : "Export"} onClick={() => {
                 if (access_token === null) {
                     window.open(loginUrl, "_self")
                 } else {
