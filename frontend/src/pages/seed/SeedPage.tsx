@@ -6,50 +6,75 @@ import Button from "../../components/button/Button"
 import SeedHeading from "./SeedHeading"
 import Heading from "../../components/Heading"
 import SeedSliders from "./SeedSliders"
-import GenreBubbles from "./GenreBubbles"
+import GenreBubbles from "./Genre/GenreBubbles"
+import ArtistBubbles from "./Artist/ArtistBubbles"
 
 import { faCircleArrowLeft } from "@fortawesome/free-solid-svg-icons"
 import { PageNames } from "../PagesNames"
 
 type Props = {
     setCurrentPage: React.Dispatch<any>,
+
     availableGenres: Array<string>,
+
+    seedAttr: {
+        attr: {
+            popularity: number
+            danceability: number
+            energy: number
+            instrumentalness: number
+        },
+        seeds: {
+            genres: Array<any>,
+            artists: Array<any>,
+            tracks: Array<any>
+        }
+    },
+
+    setSeedAttr: React.Dispatch<any>,
     theme: ThemeNames
 }
 
 const SeedPage = ({
         setCurrentPage,
         availableGenres,
+        seedAttr,
+        setSeedAttr,
         theme }: Props) => {
+        
+    const setAttr = (attr: {
+        popularity: number
+        danceability: number
+        energy: number
+        instrumentalness: number
+    }) => {
+        setSeedAttr({...seedAttr, attr: attr})
+    }
 
-    const [attr, setAttr] = useState({
-        popularity: 0.5,
-        danceability: 0.5,
-        energy: 0.5,
-        instrumentalness: 0.5,
-    })
-
-    const [seeds, setSeeds] = useState({
-        genres: [],
-        artists: [],
-        tracks: []
-    })
+    const setSeeds = (seeds: {
+        genres: Array<any>,
+        artists: Array<any>,
+        tracks: Array<any>
+    }) => {
+        setSeedAttr({ ...seedAttr, seeds: seeds })
+    }
     
     return (
         <>
             <Button icon={faCircleArrowLeft} text="Back" onClick={() => setCurrentPage(PageNames.PLAYLIST)} />
             <Heading text="Seed settings"/>
 
-            <SeedSliders attr={attr} setAttr={setAttr}/>
+            <SeedSliders attr={seedAttr.attr} setAttr={setAttr}/>
 
             <GenreBubbles 
                 availableGenres={availableGenres} 
-                selectedGenres={seeds.genres} 
-                setSelectedGenres={g => setSeeds({...seeds, genres: g})}/>
+                selectedGenres={seedAttr.seeds.genres} 
+                setSelectedGenres={g => setSeeds({ ...seedAttr.seeds, genres: g})}/>
             
-            <SeedHeading text="Seed artists" onClick={() => null} />
-            <SeedHeading text="Seed tracks" onClick={() => null}/>
-            
+            <ArtistBubbles
+                currentArtists={seedAttr.seeds.artists}
+                setArtists={a => setSeeds({...seedAttr.seeds, artists: a})}
+            />
         </>
     )
 }

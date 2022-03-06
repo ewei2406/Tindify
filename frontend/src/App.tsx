@@ -19,7 +19,20 @@ const App = () => {
 
     const [currentPage, setCurrentPage] = useState(PageNames.SEED)
     const [currentTheme, setCurrentTheme] = useState(ThemeNames.LIGHT)
-    
+    const [seedAttr, setSeedAttr] = useState({
+        attr: {
+            popularity: 0.75,
+            danceability: 0.25,
+            energy: 0.5,
+            instrumentalness: 0.5,
+        },
+        seeds: {
+            genres: ["pop"],
+            artists: [],
+            tracks: []
+        }
+    })
+
     let initialGenres: string[];
     initialGenres = [];
     const [availableGenres, setAvailableGenres] = useState(initialGenres)
@@ -32,6 +45,10 @@ const App = () => {
             Service
                 .getGenres(auth_token)
                 .then(data => setAvailableGenres(data))
+
+            Service
+                .getArtistSearch(auth_token, "kanye")
+                .then(data => console.log(data))
         })
     
       return () => {
@@ -57,6 +74,8 @@ const App = () => {
             CurrentPage = <SeedPage
                 availableGenres={availableGenres}
                 setCurrentPage={setCurrentPagePass}
+                seedAttr={seedAttr}
+                setSeedAttr={setSeedAttr}
                 theme={currentTheme} />
             break
     }

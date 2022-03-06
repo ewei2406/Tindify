@@ -6,13 +6,9 @@ Content-Type: application/json
 Authorization: BQCVsAvW4cO0iY5GG1N1I3-CbCCNoCnJlJ4mWNAnnzULbo4yOr-hGLx6kQQ1jhuWcuQQwzI8DgUQgL_aLgk
 
 ###
-GET http://localhost:3001/token/search
+GET http://localhost:3001/token/search?type=artist&query=drake
 Content-Type: application/json
-Authorization: BQCVjcoD32OYhmhzc6InjZYWqbTvol3qbr0zAr63njrSNBNi0IxV8wTO7R01u3qI4_nz1-zGA2-G2y4D75E
-
-{
-    "q": "123"
-}
+Authorization: BQD04qGrY9XmNeYWCfemVDSKv3-3KMoMOEKdS3cvqYf3EZTtaDug7pgPrQ21_dRGAILLJE-OoilhdwoKPbg
 
 ###
 GET http://localhost:3001/token/recs

@@ -43,12 +43,13 @@ app.get('/token/getGenres', (req, res) => {
 })
 
 app.get('/token/search', (req, res) => {
+    console.log(req.query);
     const config = {
         headers: { 'Authorization': `Bearer ${req.headers.authorization}` },
         params: {
-            'q': req.body.q || "",
+            'q': req.query.query,
             'offset': req.body.offset || 0,
-            'type': 'track,artist,album',
+            'type': req.query.type,
             'limit': req.body.limit || 10,
             'market': 'US'
         }

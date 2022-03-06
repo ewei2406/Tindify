@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import Heading from "../../components/Heading";
+import Heading from "../../../components/Heading";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmarkCircle, faPlus, faCheck, faXmark, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
-import IconButton from "../../components/button/IconButton";
-import Subtext from "../../components/Subtext";
+import { faXmarkCircle, faCheckCircle, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
+import { ShowAddWrapper } from "../ShowAddWrapper";
+import IconButton from "../../../components/button/IconButton";
+import Subtext from "../../../components/Subtext";
+import { Bubble } from "../../../components/Bubble";
+import { HeadingWrapper, AddWrapper } from "../HeadingWrapper";
 
 const GenreWrapper = styled.div`
     display: flex;
@@ -12,31 +15,6 @@ const GenreWrapper = styled.div`
     flex-wrap: wrap;
     /* justify-content: center; */
     gap: 5px;
-`
-
-const GenreBubble = styled.div`
-    border-radius: 1em;
-    padding: 0.2em 0.4em;
-    padding-left: 0.6em;
-    font-family: ${p => p.theme.bodyFont};
-
-    background-color: ${p => p.theme.lightColor};
-    transition: ${p => p.theme.transition};
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-
-    &:hover {
-        background-color: ${p => p.theme.delete};
-        color: ${p => p.theme.invertedColor};
-    }
-`
-
-const AddWrapper = styled.div`
-    font-size: 1.5em;
-    display: flex;
-    background-color: ${p => p.theme.buttonColor};
 `
 
 const Select = styled.select`
@@ -51,22 +29,8 @@ const Select = styled.select`
     }
 `
 
-const ShowAddWrapper = styled.div`
-    display: flex;
-    background-color: ${p => p.theme.textColor};
-    color: ${p => p.theme.invertedColor};
-    font-size: 1rem;
-    margin-left: 10px;
-    border-radius: 1em;
-    align-items: center;
-    padding: 0.1em 0.5em;
-    gap: 2px;
-`
 
-const Wrapper = styled.div`
-    display: flex;
-    width: 100%;
-`
+
 
 type Props = {
     setSelectedGenres: React.Dispatch<any>,
@@ -85,7 +49,7 @@ const GenreBubbles = ({ availableGenres, selectedGenres, setSelectedGenres }: Pr
 
     return (
         <>
-            <Wrapper>
+            <HeadingWrapper>
                 <Heading text={"Genres"}/>
                 <AddWrapper>
                     {showAdd
@@ -93,22 +57,22 @@ const GenreBubbles = ({ availableGenres, selectedGenres, setSelectedGenres }: Pr
                             <Select name="text" value={newGenre} onChange={e => setNewGenre(e.target.value)}>
                                 {availableGenres.map(g => <option value={g} key={g}>{g.replace("-", " ")}</option>)}
                             </Select>
-                            <IconButton icon={faCheck}
+                            <IconButton icon={faCheckCircle}
                                 onClick={() => { setShowAdd(false); addGenre(newGenre)} } />
-                            <IconButton icon={faXmark}
+                            <IconButton icon={faXmarkCircle}
                                 onClick={() => { setShowAdd(false); setNewGenre("") } } />
                         </ShowAddWrapper>
                         : <IconButton icon={faPlusCircle} onClick={() => setShowAdd(true)}/>
                     }
                 </AddWrapper>
-            </Wrapper>
+            </HeadingWrapper>
 
             <GenreWrapper>
                 {selectedGenres.map(genre => 
-                    <GenreBubble key={genre} onClick={() => setSelectedGenres(selectedGenres.filter(g => g !== genre))}>
+                    <Bubble key={genre} onClick={() => setSelectedGenres(selectedGenres.filter(g => g !== genre))}>
                         {genre}
                         <FontAwesomeIcon icon={faXmarkCircle} />
-                    </GenreBubble>
+                    </Bubble>
                 )}
 
                 {selectedGenres.length === 0 ? <Subtext text="No genres selected"/> : ""}

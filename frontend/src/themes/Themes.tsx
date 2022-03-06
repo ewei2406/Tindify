@@ -19,7 +19,8 @@ const Light = {
     delete: "#f00",
 
     textColor: "rgb(64,64,64)",
-    lightColor: "#d8d8d8",
+    lightColor: "#b6b6b6",
+    darkColor: "#4e4e4e",
     invertedColor: "#fff",
     buttonColor: "#fff",
     sliderColor: "#fff",
@@ -29,8 +30,9 @@ const Light = {
 
 const Dark = {
     ...Light,
-    textColor: "#ccc",
+    textColor: "#e6e6e6",
     lightColor: "#727272",
+    darkColor: "#111111",
     invertedColor: "#eee",
     sliderColor: "#535353",
     buttonColor: "#2b2c30",
