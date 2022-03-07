@@ -55,7 +55,7 @@ const getMatches = async (auth_token: string, artists: string, tracks: string, g
             genres: genres,
             limit: limit,
 
-            popularity: popularity * 100,
+            popularity: Math.round(popularity * 100),
             danceability: danceability,
             energy: energy,
             instrumentalness: instrumentalness,
@@ -66,7 +66,7 @@ const getMatches = async (auth_token: string, artists: string, tracks: string, g
 
     return axios
         .get("/token/recs", config)
-        .then((data: any) => data.data.tracks.filter((t: { preview_url: string}) => t.preview_url !== null))
+        .then((data: any) => { return data.data.tracks.filter((t: { preview_url: string}) => t.preview_url !== null)})
 }
 
 const getUserId = async (user_token: string) => {
