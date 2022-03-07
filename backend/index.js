@@ -16,6 +16,10 @@ app.get('/ping', (req, res) => {
     res.send('pong!')
 })
 
+app.get('/header', (req, res) => {
+    res.sendFile('./LogoWhite.png', { root: __dirname })
+})
+
 app.get('/getToken', (req, res) => {
     const config = {
         headers: { 'Authorization': `Basic ${auth_token}` },
