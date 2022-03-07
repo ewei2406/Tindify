@@ -50,6 +50,7 @@ I created this project because I wanted to find new music. Finding new music on 
     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/webpack/webpack-original.svg" width="50px"/>
     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" width="50px" />
     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" width="50px"/>
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/heroku/heroku-original.svg" width="50px"/>
 </p>
 
 
@@ -66,6 +67,10 @@ I created this project because I wanted to find new music. Finding new music on 
 | Express    |
 | Axios    |
 | Spotify API    |
+
+| DevOps |
+|---       |
+| Heroku    |
 
 # Local Development
 
