@@ -1,3 +1,5 @@
+import { idText } from "typescript"
+
 const axios = require('axios')
 const qs = require('qs')
 
@@ -62,11 +64,22 @@ const getMatches = async (auth_token: string, artists: string, tracks: string, g
         }
     }
 
+    function shuffleArray(array: Array<any>) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+    }
+
     console.log(config.params)
 
     return axios
         .get("/token/recs", config)
-        .then((data: any) => { return data.data.tracks.filter((t: { preview_url: string}) => t.preview_url !== null)})
+        .then((data: any) => { 
+            data = data.data.tracks.filter((t: { preview_url: string, id: string }) => t.preview_url !== null)
+            shuffleArray(data)
+            return data
+        })
 }
 
 const getUserId = async (user_token: string) => {

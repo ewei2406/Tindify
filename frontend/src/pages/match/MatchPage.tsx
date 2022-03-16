@@ -9,6 +9,7 @@ import Service from "../../services/Service"
 import Card from "./Card"
 import Subtext from "../../components/Subtext"
 import Switch from "./Switch"
+import LoadingIcon from "./LoadingIcon"
 
 const CardsWrapper = styled.div`
     position: relative;
@@ -54,7 +55,7 @@ const CenterWrapper = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 15px;
+    gap: 15px;  
     flex-grow: 2;
     /* margin: 10em 0; */
 `
@@ -110,18 +111,19 @@ const MatchPage = ({ setCurrentPage, theme, seedAttr, currentData, setCurrentDat
                     seedAttr.attr.instrumentalness,
                     )
                 .then(data => {
-                    console.log(data)
+                    // console.log(data)
                     console.log(currentData.seen)
-                    const results = data.filter(track => !currentData.seen.includes(track.id))
-                    if (results.length !== 0) { setMatches(results); setQueried(false) }
-                    else { loadMatches(limit + 10, data.slice(0, Math.min(3, data.length)).map(t => t.id).join(",")) }
+                    const valid = data.filter((t: { id: string }) => !currentData.seen.includes(t.id))
+                    // const results = data.filter(track => !currentData.seen.includes(track.id))
+                    if (valid.length !== 0) { setMatches(valid); setQueried(false) }
+                    else { loadMatches(limit + 10, data.slice(0, Math.min(2, data.length)).map(t => t.id).join(",")) }
                 })
         })
     }
 
     const removeMatch = (id: string) => {
-        setTimeout(() => setMatches(matches.filter(m => m.id !== id)), 200) 
         setCurrentData({...currentData, seen: [...currentData.seen, id]})
+        setTimeout(() => setMatches(matches.filter(m => m.id !== id)), 200) 
     }
 
     const addTrack = (track: any) => {
@@ -145,14 +147,15 @@ const MatchPage = ({ setCurrentPage, theme, seedAttr, currentData, setCurrentDat
                     {matches.map((track, i) => <Card
                         key={track.id}
                         track={track}
-                        onLike={(id) => {removeMatch(id); addTrack(track)}}
-                        onDislike={(id) => removeMatch(id)}
+                        onLike={(id) => {removeMatch(track.id); addTrack(track)}}
+                        onDislike={(id) => removeMatch(track.id)}
                         autoPlay={autoPlay}
                         setAutoPlay={setAutoPlay}
                         onLoad={() => console.log("LOADED")}
                         index={matches.length - i - 1}
                     />)}
                     {matches.length === 0 ? <CenterWrapper>
+                        <LoadingIcon/>
                         <Subtext text="Loading new matches..." />
                     </CenterWrapper> : ""}
                 </CardsWrapper>
