@@ -4,9 +4,9 @@
 
 A Spotify-based music-recommending web app inspired by Tinder!
 
-<h1 align="center">
+<div align="center">
     <a href="https://tindify-app.herokuapp.com/"><img src="./assets/OpenApp.png" alt="Open App" width="150"></a>
-</h1>
+</div>
 
 # Features
 
@@ -100,7 +100,7 @@ Visit `https://localhost:3001/`
 Done!
 
 ## Setting up the frontend (optional)
-Install npm packages in backend:
+Install npm packages in frontend:
 ```
 cd frontend
 npm install
@@ -109,6 +109,6 @@ Start the frontend
 ```
 npm start
 ```
-Visit `https://localhost:3000/` (Note: The backend must be runnin!)
+Visit `https://localhost:3000/` (Note: The backend must be running!)
 
 Done!
