@@ -12,6 +12,10 @@ const client_id = process.env.CLIENT_ID
 const client_secret = process.env.CLIENT_SECRET
 const auth_token = Buffer.from(`${client_id}:${client_secret}`, 'utf-8').toString('base64');
 
+app.get('/', (req, res) => {
+  res.sendFile('index.html', {root: path.join(__dirname, 'build')});
+});
+
 app.get('/ping', (req, res) => {
     res.send('pong!')
 })
