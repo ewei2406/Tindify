@@ -5,7 +5,7 @@
 A Spotify-based music-recommending web app inspired by Tinder!
 
 <div align="center">
-    <a href="https://tindify-app.herokuapp.com/"><img src="./assets/OpenApp.png" alt="Open App" width="150"></a>
+    <a href="https://tindify.vercel.app/"><img src="./assets/OpenApp.png" alt="Open App" width="150"></a>
 </div>
 
 # Features
